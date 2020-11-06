@@ -7,11 +7,13 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from '../AppState'
+import { profileService } from '../services/ProfileService'
 export default {
   name: 'Profile',
   setup() {
+    onMounted(() => profileService.getProfile())
     return {
       profile: computed(() => AppState.profile)
     }

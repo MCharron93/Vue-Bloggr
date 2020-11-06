@@ -30,6 +30,11 @@
             Home
           </router-link>
         </li>
+        <!-- <li class="nav-item">
+          <router-link :to="{ name: 'Blog' }" class="nav-link">
+            Blog
+          </router-link>
+        </li> -->
       </ul>
       <span class="navbar-text">
         <button

@@ -1,6 +1,6 @@
 import Axios from 'axios'
 export const api = Axios.create({
-  baseURL: '',
+  baseURL: 'https://cw-bloggr.herokuapp.com',
   timeout: 3000
 })
 
