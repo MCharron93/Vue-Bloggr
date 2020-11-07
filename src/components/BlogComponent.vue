@@ -1,6 +1,6 @@
 <template>
-  <div class="BlogComponent col-12 p-2">
-    <router-link :to="{ name: 'Blog'}">
+  <div class="BlogComponent col-12 p-2" v-if="blogProp.creator">
+    <router-link :to="{ name: 'Blog', params: {blogId: blogProp._id}}">
       <h2>{{ blogProp.title }}</h2>
       <h4>{{ blogProp.creator.name }}</h4>
     </router-link>
@@ -9,7 +9,6 @@
 
 <script>
 import { computed } from 'vue'
-// import { AppState } from '../AppState'
 export default {
   name: 'BlogComponent',
   props: {
