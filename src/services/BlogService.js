@@ -27,15 +27,17 @@ class BlogService {
     try {
       const res = await api.post('/api/comments/', commentData)
       AppState.comments = res.data
+      this.getCommentsbyActiveBlog(commentData.blog)
     } catch (error) {
       console.error(error)
     }
   }
 
-  async removeComment(commentId) {
+  async removeComment(commentId, blogId) {
     try {
-      const res = await api.delete('/api/comments/' + commentId)
-      console.log(res)
+      await api.delete('/api/comments/' + commentId)
+      // console.log(res)
+      this.getCommentsbyActiveBlog(blogId)
     } catch (error) {
       console.error(error)
     }

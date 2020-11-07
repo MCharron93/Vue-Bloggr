@@ -29,7 +29,7 @@ export default {
       profile: computed(() => AppState.profile),
       comments: computed(() => props.commentProps),
       removeComment() {
-        blogService.removeComment(props.commentProps._id)
+        blogService.removeComment(props.commentProps._id, props.commentProps.blog)
       }
     }
   },

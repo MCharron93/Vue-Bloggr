@@ -7,13 +7,13 @@
       <div>
         <p>Creating a blog is fun and easy! Just click this button to pull up the form!</p>
         <span>
-          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
             &#43; Blog
           </button></span>
       </div>
 
       <form @submit.prevent="createBlog">
-        <div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+        <div class="modal" tabindex="-1" role="dialog" id="myModal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -34,7 +34,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
                   Save changes
                 </button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -58,11 +58,16 @@ import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { blogService } from '../services/BlogService'
 import BlogComponent from '../components/BlogComponent'
+import $ from 'jquery'
 export default {
   name: 'Home',
   setup() {
     const state = reactive({
       newBlog: {}
+    })
+    // trying to close the modal after the blog has been created....?
+    $('#submitBtn').click(function() {
+      $('#myModal').modal('hide')
     })
     // requires a way to call to the api for the blogs to load into app state
     onMounted(() => {
