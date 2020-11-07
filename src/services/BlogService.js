@@ -2,6 +2,27 @@ import { AppState } from '../AppState'
 import { api } from './AxiosService'
 
 class BlogService {
+  async getMyBlogs() {
+    try {
+      const res = await api.get('/api/profile/blogs')
+      // console.log(res.data)
+      AppState.myBlogs = res.data
+      // console.log(AppState.myBlogs)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async createBlog(newBlogData) {
+    try {
+      await api.post('/api/blogs/', newBlogData)
+      this.getAllBlogs()
+      console.log(AppState.blogs)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   async addComment(commentData) {
     try {
       const res = await api.post('/api/comments/', commentData)

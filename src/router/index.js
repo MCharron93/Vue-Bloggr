@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../pages/Home.vue'
 // @ts-ignore
 import Profile from '../pages/Profile.vue'
+// @ts-ignore
 import Blog from '../pages/BlogPage.vue'
 import { Auth0Provider } from '@bcwdev/auth0provider-client'
 
