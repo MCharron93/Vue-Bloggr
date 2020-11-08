@@ -1,7 +1,7 @@
 <template>
   <div class="ActiveBlog col-12 text-center p-4 bg-room">
-    <div class="card">
-      <h2>{{ blog.title }}</h2><span v-if="blog.creatorEmail"><button v-if="profile == blog.creatorEmail" type="button" class="btn btn-secondary justify-self-end" data-toggle="modal" data-target="#blogModal">
+    <div class="card parchment">
+      <h2>{{ blog.title }} </h2><h4>-- {{ blog.creatorEmail }}</h4><span v-if="blog.creatorEmail"><button v-if="profile == blog.creatorEmail" type="button" class="btn btn-secondary justify-self-end" data-toggle="modal" data-target="#blogModal">
         Edit
       </button><button v-if="profile == blog.creatorEmail" class="btn btn-danger" @click="removeBlog">&times;</button></span>
       <p class="p-4">
@@ -10,7 +10,7 @@
     </div>
     <form @submit.prevent="editBlog">
       <div class="modal" tabindex="-1" role="dialog" id="blogModal">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">
@@ -43,13 +43,13 @@
     </form>
 
     <form class="form-group d-flex justify-content-around" @submit.prevent="addComment">
-      <input type="text" name="comment" placeholder="Add comment?" v-model="state.newComment.body">
+      <input class="border border-none transparent" type="text" name="comment" placeholder="Add comment?" v-model="state.newComment.body">
       <button class="btn btn-info" type="submit">
         &#43;
       </button>
     </form>
     <div class="row justify-content-around">
-      <comment-component class="card" v-for="comment in comments" :key="comment" :comment-props="comment" />
+      <comment-component v-for="comment in comments" :key="comment" :comment-props="comment" />
     </div>
   </div>
 </template>
@@ -106,8 +106,9 @@ background-image: url('tavern-dark.jpg');
 background-size: cover;
 background-position: center;
 }
-.card{
+.parchment{
  opacity: 70%;
+ background-color: tan;
 }
 
 </style>

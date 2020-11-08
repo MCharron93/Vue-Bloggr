@@ -1,5 +1,5 @@
 <template>
-  <div class="BlogComponent col-5 card p-3 m-3" v-if="blogProp.creatorEmail">
+  <div class="BlogComponent col-5 card parchment p-3 m-3" v-if="blogProp.creatorEmail">
     <router-link :to="{ name: 'Blog', params: {blogId: blogProp._id}}">
       <h2>{{ blogProp.title }}</h2>
       <h4>{{ blogProp.creatorEmail }}</h4>
@@ -25,5 +25,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.parchment{
+ opacity: 70%;
+ background-color: tan;
+}
 </style>

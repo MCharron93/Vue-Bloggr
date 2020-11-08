@@ -1,7 +1,7 @@
 <template>
   <div class="home container-fluid bg-tavern">
     <div class="row justify-content-center">
-      <div class="col-10 p-3 my-3 card text-center">
+      <div class="col-10 p-3 my-3 card parchment text-center">
         <h1 class="py-4">
           Hello Nerds!
         </h1>
@@ -60,7 +60,7 @@ import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { blogService } from '../services/BlogService'
 import BlogComponent from '../components/BlogComponent'
-import $ from 'jquery'
+// import $ from 'jquery'
 export default {
   name: 'Home',
   setup() {
@@ -68,9 +68,9 @@ export default {
       newBlog: {}
     })
     // trying to close the modal after the blog has been created....?
-    $('#submitBtn').click(function() {
-      $('#myModal').modal('hide')
-    })
+    // $('#submitBtn').click(function() {
+    //   $('#myModal').modal('hide')
+    // })
     // requires a way to call to the api for the blogs to load into app state
     onMounted(() => {
       blogService.getAllBlogs()
@@ -95,11 +95,9 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.col-10{
-  opacity: 70%;
-}
-.col-5{
-  opacity: 70%;
+.parchment{
+ opacity: 70%;
+ background-color: tan;
 }
 .container-fluid{
   font-family: 'Oldenburg', cursive;

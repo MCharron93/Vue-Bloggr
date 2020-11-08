@@ -1,8 +1,8 @@
 <template>
-  <div v-if="profile.email" class="commentComponent text-left col-5 p-2">
+  <div v-if="profile.email" class="commentComponent text-left col-5 parchment p-2">
     <h4>{{ comments.body }}</h4>
     <p v-if="comments.creator">
-      {{ comments.creator.email }}
+      By: {{ comments.creator.email }}
     </p>
     <span>
       <button type="button" v-if="comments.creatorEmail == profile.email" class="btn btn-success" data-toggle="modal" data-target="#commentModal">
@@ -13,7 +13,7 @@
       </button></span>
 
     <form @submit.prevent="editComment">
-      <div class="modal" tabindex="-1" role="dialog" id="commentModal">
+      <div class="modal" data-backdrop="false" tabindex="-1" role="dialog" id="commentModal">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -85,5 +85,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#commentModal{
+  z-index: 10000000;
+  opacity: 100% !important;
+}
+.parchment{
+ opacity: 70%;
+ background-color: tan;
+}
 
 </style>
