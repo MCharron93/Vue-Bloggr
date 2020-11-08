@@ -1,12 +1,13 @@
 <template>
-  <div class="ActiveBlog col-12 text-center p-4">
-    <h2>{{ blog.title }}</h2><span v-if="blog.creatorEmail"><button type="button" class="btn btn-secondary justify-self-end" data-toggle="modal" data-target="#blogModal">
-      Edit
-    </button><button class="btn btn-danger" @click="removeBlog">&times;</button></span>
-    <p class="p-4">
-      {{ blog.body }}
-    </p>
-
+  <div class="ActiveBlog col-12 text-center p-4 bg-room">
+    <div class="card">
+      <h2>{{ blog.title }}</h2><span v-if="blog.creatorEmail"><button v-if="profile == blog.creatorEmail" type="button" class="btn btn-secondary justify-self-end" data-toggle="modal" data-target="#blogModal">
+        Edit
+      </button><button v-if="profile == blog.creatorEmail" class="btn btn-danger" @click="removeBlog">&times;</button></span>
+      <p class="p-4">
+        {{ blog.body }}
+      </p>
+    </div>
     <form @submit.prevent="editBlog">
       <div class="modal" tabindex="-1" role="dialog" id="blogModal">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -47,8 +48,8 @@
         &#43;
       </button>
     </form>
-    <div class="row">
-      <comment-component v-for="comment in comments" :key="comment" :comment-props="comment" />
+    <div class="row justify-content-around">
+      <comment-component class="card" v-for="comment in comments" :key="comment" :comment-props="comment" />
     </div>
   </div>
 </template>
@@ -97,5 +98,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ActiveBlog{
+  height: 100vh;
+}
+.bg-room{
+background-image: url('tavern-dark.jpg');
+background-size: cover;
+background-position: center;
+}
+.card{
+ opacity: 70%;
+}
 
 </style>

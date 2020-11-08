@@ -1,5 +1,5 @@
 <template>
-  <div v-if="profile.email" class="commentComponent text-left col-12">
+  <div v-if="profile.email" class="commentComponent text-left col-5 p-2">
     <h4>{{ comments.body }}</h4>
     <p v-if="comments.creator">
       {{ comments.creator.email }}
@@ -7,11 +7,10 @@
     <span>
       <button type="button" v-if="comments.creatorEmail == profile.email" class="btn btn-success" data-toggle="modal" data-target="#commentModal">
         Edit?
+      </button>
+      <button class="btn btn-danger" v-if="comments.creatorEmail == profile.email" @click="removeComment">
+        &times;
       </button></span>
-
-    <button class="btn btn-danger" v-if="comments.creatorEmail == profile.email" @click="removeComment">
-      &times;
-    </button>
 
     <form @submit.prevent="editComment">
       <div class="modal" tabindex="-1" role="dialog" id="commentModal">
