@@ -1,9 +1,46 @@
 <template>
   <div class="ActiveBlog col-12 text-center p-4">
-    <h2>{{ blog.title }}</h2><span v-if="blog.creatorEmail"><button class="btn btn-danger" @click="removeBlog">&times;</button><button class="btn btn-success">Edit?</button></span>
+    <h2>{{ blog.title }}</h2><span v-if="blog.creatorEmail"><button type="button" class="btn btn-secondary justify-self-end" data-toggle="modal" data-target="#blogModal">
+      Edit
+    </button><button class="btn btn-danger" @click="removeBlog">&times;</button></span>
     <p class="p-4">
       {{ blog.body }}
     </p>
+
+    <form @submit.prevent="editBlog">
+      <div class="modal" tabindex="-1" role="dialog" id="blogModal">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">
+                <input class="border border-none" type="text" v-model="state.editBlog.title" placeholder="Title">
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Content</span>
+                </div>
+                <textarea class="form-control" aria-label="With textarea" v-model="state.editBlog.body">
+                  </textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="submitBtn">
+                Save changes
+              </button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
     <form class="form-group d-flex justify-content-around" @submit.prevent="addComment">
       <input type="text" name="comment" placeholder="Add comment?" v-model="state.newComment.body">
       <button class="btn btn-info" type="submit">
@@ -31,6 +68,9 @@ export default {
     const state = reactive({
       newComment: {
         blog: route.params.blogId
+      },
+      editBlog: {
+        blogId: route.params.blogId
       }
     })
     onMounted(() => {
@@ -46,6 +86,9 @@ export default {
       },
       addComment() {
         blogService.addComment(state.newComment)
+      },
+      editBlog() {
+        blogService.editBlog(state.editBlog)
       }
     }
   },

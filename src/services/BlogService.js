@@ -2,6 +2,16 @@ import { AppState } from '../AppState'
 import { api } from './AxiosService'
 
 class BlogService {
+  async editBlog(blogData) {
+    try {
+      const res = await api.put('/api/blogs/' + blogData.blogId, blogData)
+      // console.log(res.data)
+      AppState.activeBlog = res.data
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   async removeBlog(blogId) {
     try {
       await api.delete('/api/blogs/' + blogId)
@@ -43,11 +53,10 @@ class BlogService {
 
   async editComment(commentInfo) {
     try {
-      debugger
-      const res = await api.put('/api/comments/' + commentInfo._id, commentInfo.body)
+      const res = await api.put('/api/comments/' + commentInfo._id, commentInfo)
       AppState.comments = res.data
       this.getCommentsbyActiveBlog(commentInfo.blog)
-      console.log(AppState.comments)
+      // console.log(AppState.comments)
     } catch (error) {
       console.error(error)
     }
