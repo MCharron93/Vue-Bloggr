@@ -1,24 +1,24 @@
 <template>
-  <div class="home container-fluid">
+  <div class="home container-fluid bg-tavern">
     <div class="row justify-content-center">
-      <h1 class="col-12 text-center">
-        Hello Nerds!
-      </h1>
-      <div>
-        <p>Creating a blog is fun and easy! Just click this button to pull up the form!</p>
+      <div class="col-10 p-3 my-3 card text-center">
+        <h1 class="py-4">
+          Hello Nerds!
+        </h1>
+        <p>Welcome to the Local Tavern, come down and sit a spell! Enjoy a good read and collaborate with other adventurers. The Local Tavern has all the gossip on the current editions of your favourite RPG games. Whether it's classics like DnD, or more modern adventures like StarFinder, you'll find your niche! Create blogs, add comments, and see what the hub is all about at your one-stop shop for pint of knowledge.</p>
         <span>
-          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+          <button type="button" class="btn btn-secondary justify-self-end" data-toggle="modal" data-target="#myModal">
             &#43; Blog
           </button></span>
       </div>
 
       <form @submit.prevent="createBlog">
         <div class="modal" tabindex="-1" role="dialog" id="myModal">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title">
-                  <input type="text" v-model="state.newBlog.title" placeholder="Blog title:">
+                  <input class="border border-none" type="text" v-model="state.newBlog.title" placeholder="Title">
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -37,7 +37,7 @@
                 <button type="submit" class="btn btn-primary" id="submitBtn">
                   Save changes
                 </button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
                   Close
                 </button>
               </div>
@@ -45,9 +45,11 @@
           </div>
         </div>
       </form>
+    </div>
 
-      <!-- this page will need to load all of the blogs here -->
-      <!-- requires a blogs component to model and load into -->
+    <!-- this page will need to load all of the blogs here -->
+    <!-- requires a blogs component to model and load into -->
+    <div class="row justify-content-around" style="overflow: overlay; max-height: 60vh;">
       <blog-component v-for="blog in blogs" :key="blog" :blog-prop="blog" />
     </div>
   </div>
@@ -86,3 +88,21 @@ export default {
   components: { BlogComponent }
 }
 </script>
+
+<style>
+.home{
+  background-image: url('wooden.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.col-10{
+  opacity: 70%;
+}
+.col-5{
+  opacity: 70%;
+}
+.container-fluid{
+  font-family: 'Oldenburg', cursive;
+}
+
+</style>

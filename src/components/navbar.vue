@@ -2,14 +2,15 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img
-          alt="Vue logo"
-          src="../assets/logo.png"
-          width="25"
-        />
-      </div>
-      <div class="text-light text-shadow">
-        <h3>ue Template</h3>
+        <div class="text-light text-shadow">
+          <h3>
+            The Local Ta<img
+              alt="Vue logo"
+              src="../assets/logo.png"
+              width="25"
+            />ern
+          </h3>
+        </div>
       </div>
     </router-link>
     <button
@@ -30,11 +31,6 @@
             Home
           </router-link>
         </li>
-        <!-- <li class="nav-item">
-          <router-link :to="{ name: 'Blog' }" class="nav-link">
-            Blog
-          </router-link>
-        </li> -->
       </ul>
       <span class="navbar-text">
         <button
@@ -120,5 +116,8 @@ export default {
 }
 a:hover {
   text-decoration: none;
+}
+nav{
+  font-family: 'Oldenburg', cursive;
 }
 </style>

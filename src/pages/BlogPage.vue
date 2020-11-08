@@ -1,6 +1,6 @@
 <template>
   <div class="ActiveBlog col-12 text-center p-4">
-    <h2>{{ blog.title }}</h2>
+    <h2>{{ blog.title }}</h2><span v-if="blog.creatorEmail"><button class="btn btn-danger" @click="removeBlog">&times;</button><button class="btn btn-success">Edit?</button></span>
     <p class="p-4">
       {{ blog.body }}
     </p>
@@ -23,6 +23,7 @@ import { blogService } from '../services/BlogService'
 // There is a huge difference between useRouteR and useRoutE
 import { useRoute } from 'vue-router'
 import CommentComponent from '../components/CommentComponent'
+import router from '../router'
 export default {
   name: 'ActiveBlog',
   setup() {
@@ -39,6 +40,10 @@ export default {
       state,
       blog: computed(() => AppState.activeBlog),
       comments: computed(() => AppState.comments),
+      removeBlog() {
+        blogService.removeBlog(route.params.blogId)
+        router.push({ name: 'Home' })
+      },
       addComment() {
         blogService.addComment(state.newComment)
       }
