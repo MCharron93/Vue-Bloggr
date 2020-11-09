@@ -108,7 +108,7 @@ background-size: cover;
 background-position: center;
 }
 .parchment{
- opacity: 70%;
+//  opacity: 70%;
  background-color: tan;
 }
 

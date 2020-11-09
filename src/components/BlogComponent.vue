@@ -26,7 +26,7 @@ export default {
 
 <style lang="scss" scoped>
 .parchment{
- opacity: 70%;
+//  opacity: 70%;
  background-color: tan;
 }
 </style>

@@ -60,7 +60,7 @@ import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { blogService } from '../services/BlogService'
 import BlogComponent from '../components/BlogComponent'
-// import $ from 'jquery'
+import $ from 'jquery'
 export default {
   name: 'Home',
   setup() {
@@ -68,9 +68,6 @@ export default {
       newBlog: {}
     })
     // trying to close the modal after the blog has been created....?
-    // $('#submitBtn').click(function() {
-    //   $('#myModal').modal('hide')
-    // })
     // requires a way to call to the api for the blogs to load into app state
     onMounted(() => {
       blogService.getAllBlogs()
@@ -81,6 +78,7 @@ export default {
       blogs: computed(() => AppState.blogs),
       createBlog() {
         blogService.createBlog(state.newBlog)
+        $('#myModal').modal('toggle')
       }
     }
   },
@@ -96,11 +94,13 @@ export default {
   background-repeat: no-repeat;
 }
 .parchment{
- opacity: 70%;
  background-color: tan;
 }
 .container-fluid{
   font-family: 'Oldenburg', cursive;
+}
+.modal-backdrop{
+  z-index: -10000 !important;
 }
 
 </style>

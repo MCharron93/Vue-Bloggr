@@ -1,17 +1,18 @@
 <template>
-  <div v-if="profile.email" class="commentComponent text-left col-5 parchment p-2">
-    <h4>{{ comments.body }}</h4>
-    <p v-if="comments.creator">
-      By: {{ comments.creator.email }}
-    </p>
-    <span>
-      <button type="button" v-if="comments.creatorEmail == profile.email" class="btn btn-success" data-toggle="modal" data-target="#commentModal">
-        Edit?
-      </button>
-      <button class="btn btn-danger" v-if="comments.creatorEmail == profile.email" @click="removeComment">
-        &times;
-      </button></span>
-
+  <div v-if="profile.email" class="commentComponent text-left col-5 p-2">
+    <div class="parchment p-3">
+      <h4>{{ comments.body }}</h4>
+      <p v-if="comments.creator">
+        By: {{ comments.creator.email }}
+      </p>
+      <span>
+        <button type="button" v-if="comments.creatorEmail == profile.email" class="btn btn-success" data-toggle="modal" data-target="#commentModal">
+          Edit?
+        </button>
+        <button class="btn btn-danger" v-if="comments.creatorEmail == profile.email" @click="removeComment">
+          &times;
+        </button></span>
+    </div>
     <form @submit.prevent="editComment">
       <div class="modal" data-backdrop="false" tabindex="-1" role="dialog" id="commentModal">
         <div class="modal-dialog" role="document">
@@ -90,7 +91,7 @@ export default {
   opacity: 100% !important;
 }
 .parchment{
- opacity: 70%;
+//  opacity: 70%;
  background-color: tan;
 }
 
