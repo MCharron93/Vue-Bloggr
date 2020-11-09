@@ -35,7 +35,7 @@ class BlogService {
     try {
       await api.post('/api/blogs/', newBlogData)
       this.getAllBlogs()
-      console.log(AppState.blogs)
+      // console.log(AppState.blogs)
     } catch (error) {
       console.error(error)
     }
@@ -76,6 +76,7 @@ class BlogService {
     try {
       const res = await api.get('/api/blogs/' + blogData + '/comments')
       // console.log(res.data)
+      // console.log(AppState.profile)
       AppState.comments = res.data
     } catch (error) {
       console.error(error)

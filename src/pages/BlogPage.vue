@@ -1,9 +1,9 @@
 <template>
   <div class="ActiveBlog col-12 text-center p-4 bg-room">
     <div class="card parchment">
-      <h2>{{ blog.title }} </h2><h4>-- {{ blog.creatorEmail }}</h4><span v-if="blog.creatorEmail"><button v-if="profile == blog.creatorEmail" type="button" class="btn btn-secondary justify-self-end" data-toggle="modal" data-target="#blogModal">
+      <h2>{{ blog.title }} </h2><h4>-- {{ blog.creatorEmail }}</h4><span v-if="blog.creatorEmail"><button v-if="profile.email == blog.creatorEmail" type="button" class="btn btn-secondary justify-self-end" data-toggle="modal" data-target="#blogModal">
         Edit
-      </button><button v-if="profile == blog.creatorEmail" class="btn btn-danger" @click="removeBlog">&times;</button></span>
+      </button><button v-if="profile.email == blog.creatorEmail" class="btn btn-danger" @click="removeBlog">&times;</button></span>
       <p class="p-4">
         {{ blog.body }}
       </p>
@@ -79,6 +79,7 @@ export default {
     })
     return {
       state,
+      profile: computed(() => AppState.profile),
       blog: computed(() => AppState.activeBlog),
       comments: computed(() => AppState.comments),
       removeBlog() {
